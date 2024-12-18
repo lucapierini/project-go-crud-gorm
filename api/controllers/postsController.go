@@ -6,20 +6,14 @@ import (
 	"github.com/lucapierini/project-go-crud-gorm/models"
 )
 
-func TestFunction(c *gin.Context){
-	c.JSON(200, gin.H{
-		"message": "pong",
-	})
-}
-
-func PostCreate(c *gin.Context){
-	var body struct{
-		Body string
+func PostCreate(c *gin.Context) {
+	var body struct {
+		Body  string
 		Title string
 	}
 
 	c.Bind(&body)
-	
+
 	post := models.Post{Title: body.Title, Body: body.Body}
 
 	result := initializers.DB.Create(&post)
@@ -36,7 +30,7 @@ func PostCreate(c *gin.Context){
 	}
 }
 
-func PostsIndex(c *gin.Context){
+func PostsIndex(c *gin.Context) {
 	var posts []models.Post
 	initializers.DB.Find(&posts)
 
@@ -46,9 +40,9 @@ func PostsIndex(c *gin.Context){
 
 }
 
-func PostsShow(c *gin.Context){
+func PostsShow(c *gin.Context) {
 	id := c.Param("id")
-	
+
 	var post models.Post
 	initializers.DB.First(&post, id)
 
@@ -64,14 +58,14 @@ func PostsShow(c *gin.Context){
 	})
 }
 
-func PostUpdate(c *gin.Context){
+func PostUpdate(c *gin.Context) {
 	id := c.Param("id")
-	
+
 	var post models.Post
 	initializers.DB.First(&post, id)
 
-	var body struct{
-		Body string
+	var body struct {
+		Body  string
 		Title string
 	}
 
@@ -79,11 +73,10 @@ func PostUpdate(c *gin.Context){
 
 	post.Title = body.Title
 	post.Body = body.Body
-
-	// initializers.DB.Save(&post)
+	
 	initializers.DB.Model(&post).Updates(models.Post{
 		Title: body.Title,
-		Body: body.Body,
+		Body:  body.Body,
 	})
 
 	c.JSON(200, gin.H{
@@ -91,9 +84,9 @@ func PostUpdate(c *gin.Context){
 	})
 }
 
-func PostDelete(c *gin.Context){
+func PostDelete(c *gin.Context) {
 	id := c.Param("id")
-	
+
 	var post models.Post
 	initializers.DB.First(&post, id)
 

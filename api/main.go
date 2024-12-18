@@ -16,10 +16,14 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/ping", controllers.TestFunction)
-	r.POST("/post", controllers.PostCreate)
-	r.GET("/posts", controllers.PostsIndex)
-	r.GET("/posts/:id", controllers.PostsShow)
-	r.PUT("/posts/:id", controllers.PostUpdate)
-	r.DELETE("/posts/:id", controllers.PostDelete)
+	posts := r.Group("/posts")
+	{
+		posts.GET("/", controllers.PostsIndex)
+		posts.GET("/:id", controllers.PostsShow)
+		posts.PUT("/:id", controllers.PostUpdate)
+		posts.DELETE("/:id", controllers.PostDelete)
+		posts.POST("/", controllers.PostCreate)
+	}
+
 	r.Run()
 }
