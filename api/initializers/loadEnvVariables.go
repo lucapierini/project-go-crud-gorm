@@ -15,8 +15,12 @@ func LoadEnvVariables(){
 	// Carga el archivo .env
 	err := godotenv.Load(envPath)
 	if err != nil {
-		log.Fatalf("Error cargando el archivo .env: %v", err)
+		err2 := godotenv.Load(".env")
+		if err2 != nil {
+			log.Fatalf("Error cargando el archivo .env: %v", err)
+			return
+		}
+		fmt.Println("Carga de variables de entorno exitosa")
 		return
 	}
-	fmt.Println("Carga de variables de entorno exitosa")
 }
