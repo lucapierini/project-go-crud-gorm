@@ -2,14 +2,14 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/lucapierini/project-go-crud-gorm/config"
 	"github.com/lucapierini/project-go-crud-gorm/controllers"
-	"github.com/lucapierini/project-go-crud-gorm/initializers"
 )
 
 func init() {
-	initializers.LoadEnvVariables()
-	initializers.ConnectToDB()
-	initializers.SyncDatabase()
+	config.LoadEnvVariables()
+	config.ConnectToDB()
+	config.SyncDatabase()
 }
 
 func main() {

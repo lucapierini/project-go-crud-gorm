@@ -53,7 +53,7 @@ proyect-go-crud-gorm/
 ├── .gitignore           # Archivos ignorados por Git
 ├── api/                 # Código fuente de la API
 │   ├── controllers/     # Controladores para manejar rutas
-│   ├── initializers/    # Configuración inicial y conexión a la base de datos
+│   ├── config/    # Configuración inicial y conexión a la base de datos
 │   ├── models/          # Modelos de base de datos
 │   ├── main.go          # Punto de entrada de la aplicación
 │   ├── go.mod           # Dependencias del módulo Go
